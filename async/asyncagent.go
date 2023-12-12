@@ -9,7 +9,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"math"
 
 	"github.com/luraproject/lura/v2/backoff"
 	"github.com/luraproject/lura/v2/config"
@@ -75,10 +74,6 @@ func (a AgentStarter) Start(
 		if err != nil {
 			logger.Error(fmt.Sprintf("[SERVICE: AsyncAgent][%s] building the proxy pipe:", agent.Name), err)
 			continue
-		}
-
-		if agent.Connection.MaxRetries <= 0 {
-			agent.Connection.MaxRetries = math.MaxInt64
 		}
 
 		opts := Options{
